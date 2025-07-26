@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Beby 💖 - Cinta Kita</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ff7eb9;
+      --dark-pink: #ff2d75;
+      --purple: #7e6bff;
+      --blue: #00d4ff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Floating Hearts */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .heart {
+      position: absolute;
+      opacity: 0;
+      animation: float 6s ease-in infinite;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Music Player */
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.3s;
+    }
+    
+    .music-control:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .music-control i {
+      font-size: 20px;
+      color: white;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+    
+    .hero h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(to right, var(--pink), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(255, 126, 185, 0.3);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(255, 126, 185, 0.5);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(255, 126, 185, 0.8), 0 0 30px rgba(255, 126, 185, 0.4);
+      }
+    }
+    
+    .typing-text {
+      font-size: 1.5rem;
+      max-width: 800px;
+      border-right: 3px solid var(--pink);
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3s steps(40) 1s 1 normal both, blink-caret 0.75s step-end infinite;
+    }
+    
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+    
+    @keyframes blink-caret {
+      from, to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: var(--pink);
+      }
+    }
+    
+    /* Letter Section */
+    .letter {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 50px auto;
+      max-width: 800px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: perspective(1000px) rotateX(5deg);
+      transition: all 0.5s;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .letter:hover {
+      transform: perspective(1000px) rotateX(0deg);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .letter h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: var(--pink);
+      text-align: center;
+    }
+    
+    .letter p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      text-align: justify;
+    }
+    
+    /* Photo Gallery */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+    }
+    
+    .photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .photo:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(255, 126, 185, 0.4);
+    }
+    
+    .photo:hover img {
+      transform: scale(1.1);
+    }
+    
+    /* Memory Timeline */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 3px;
+      background: var(--pink);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1.5px;
+    }
+    
+    .memory {
+      padding: 10px 40px;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+    }
+    
+    .memory::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border: 3px solid var(--pink);
+      border-radius: 50%;
+      top: 15px;
+      z-index: 1;
+    }
+    
+    .left {
+      left: 0;
+    }
+    
+    .right {
+      left: 50%;
+    }
+    
+    .left::after {
+      right: -10px;
+    }
+    
+    .right::after {
+      left: -10px;
+    }
+    
+    .memory-content {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .typing-text {
+        font-size: 1.2rem;
+      }
+      
+      .letter {
+        padding: 20px;
+        margin: 30px 20px;
+      }
+      
+      .letter h2 {
+        font-size: 2rem;
+      }
+      
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .memory {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .memory::after {
+        left: 21px;
+      }
+      
+      .left::after, .right::after {
+        left: 21px;
+      }
+      
+      .right {
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="audio/backsound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <!-- Music Control -->
+  <div class="music-control" id="music-toggle">
+    <i class="fas fa-music"></i>
+  </div>
+  
+  <!-- Floating Hearts -->
+  <div class="hearts" id="hearts-container"></div>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Untuk Beby(Ani), Cahaya Hidupku 💖</h1>
+    <p class="typing-text">Setiap detik bersamamu adalah halaman terindah dalam buku hidupku...</p>
+  </section>
+  
+  <!-- Love Letter -->
+  <section class="letter">
+    <h2>Surat Cinta</h2>
+    <p>
+      Hai Sayangku,<br /><br />
+      
+      Jika aku harus memilih satu momen untuk diabadikan, itu adalah setiap detik ketika mataku bertemu dengan senyummu. Kamu adalah alasan mengapa pagi terasa lebih cerah, malam terasa lebih hangat, dan hidup terasa lebih berarti.<br /><br />
+      
+      Aku bersyukur kepada Tuhan yang telah mempertemukan kita. Kamu mengajariku arti cinta yang sesungguhnya - bukan hanya tentang kebahagiaan, tapi juga tentang kesetiaan, pengertian, dan saling mendukung dalam suka dan duka.<br /><br />
+      
+      Terima kasih sudah menjadi pelabuhan teraman untuk hatiku. Aku berjanji akan selalu berusaha menjadi yang terbaik untuk kita.<br /><br />
+      
+      Jangan ngambekan terusss yaaa. Semoga kita bisa terus menulis cerita cinta kita bersama sampai halaman terakhir.<br /><br />
+      
+      Dengan semua cinta di hatiku,<br />
+      <span style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--pink);">Khoirul</span> 💌
+    </p>
+  </section>
+  
+  <!-- Memory Timeline -->
+  <div class="timeline">
+    <div class="memory left">
+      <div class="memory-content">
+        <h3>Pertemuan Pertama</h3>
+        <p>lucu yaa kita kenalnya lewat tik-tok....hahah...aku gac nyangka</p>
+      </div>
+    </div>
+    <div class="memory right">
+      <div class="memory-content">
+        <h3>Kencan Pertama</h3>
+        <p>semoga bisaa kencan nih hehehe...</p>
+      </div>
+    </div>
+    <div class="memory left">
+      <div class="memory-content">
+        <h3>Pertama Kali Pegangan Tangan</h3>
+        <p>dan aku berharap ini jugaaa bisaaaaaa</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Photo Gallery -->
+ <div class="gallery">
+  <div class="photo">
+    <img src="images/foto1.jpg" alt="Momen pertama kita">
+  </div>
+  <div class="photo">
+    <img src="images/foto2.jpg" alt="Liburan bersama">
+  </div>
+  <div class="photo">
+    <img src="images/foto3.jpg" alt="Tanggal spesial">
+  </div>
+</div>
+  </div>
+
+  <script>
+    // Floating Hearts Animation
+    function createHearts() {
+      const container = document.getElementById('hearts-container');
+      const colors = ['#ff7eb9', '#ff65a3', '#7afcff', '#feff9c', '#fff740'];
+      
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = 6 + Math.random() * 10 + 's';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        heart.style.fontSize = (10 + Math.random() * 20) + 'px';
+        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        container.appendChild(heart);
+      }
+    }
+    
+    // Music Control
+    const music = document.getElementById('bg-music');
+    const musicToggle = document.getElementById('music-toggle');
+    let isPlaying = false;
+    
+    // Try to autoplay (may not work due to browser policies)
+    document.addEventListener('click', function() {
+      if (!isPlaying) {
+        music.play()
+          .then(() => {
+            isPlaying = true;
+            musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+          })
+          .catch(error => console.log('Autoplay prevented:', error));
+      }
+    }, { once: true });
+    
+    musicToggle.addEventListener('click', function() {
+      if (isPlaying) {
+        music.pause();
+        musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+      } else {
+        music.play();
+        musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+      }
+      isPlaying = !isPlaying;
+    });
+    
+    // Typing Effect
+    const texts = [
+      "Aku mencintaimu lebih dari kemarin, kurang dari besok...",
+      "Kamu adalah mimpi yang menjadi kenyataan...",
+      "Bersamamu adalah tempat favoritku di dunia ini...",
+      "Jika cinta adalah cerita, aku ingin menulisnya bersamamu sampai akhir..."
+    ];
+    
+    let textIndex = 0;
+    const typingElement = document.querySelector('.typing-text');
+    
+    function typeWriter(text, i, cb) {
+      if (i < text.length) {
+        typingElement.innerHTML = text.substring(0, i + 1) + '<span class="cursor">|</span>';
+        setTimeout(() => typeWriter(text, i + 1, cb), 100);
+      } else {
+        setTimeout(cb, 2000);
+      }
+    }
+    
+    function startTypingAnimation() {
+      typeWriter(texts[textIndex], 0, () => {
+        textIndex = (textIndex + 1) % texts.length;
+        setTimeout(startTypingAnimation, 500);
+      });
+    }
+    
+    // Initialize
+    window.onload = function() {
+      createHearts();
+      startTypingAnimation();
+      
+      // Add confetti effect on click
+      document.addEventListener('click', function(e) {
+        const colors = ['#ff7eb9', '#7afcff', '#fff740'];
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.left = e.clientX + 'px';
+        confetti.style.top = e.clientY + 'px';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.borderRadius = '50%';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.transform = 'translate(-50%, -50%)';
+        confetti.style.animation = 'confetti-fall 2s linear forwards';
+        
+        document.body.appendChild(confetti);
+        
+        // Create keyframes for animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+          @keyframes confetti-fall {
+            0% {
+              transform: translate(-50%, -50%) rotate(0deg);
+              opacity: 1;
+            }
+            100% {
+              transform: translate(-50%, 100vh) rotate(360deg);
+              opacity: 0;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+        
+        // Remove after animation
+        setTimeout(() => {
+          confetti.remove();
+          style.remove();
+        }, 2000);
+      });
+    };
+  </script>
+</body>
+</html>
