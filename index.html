@@ -12,6 +12,7 @@
       --dark-pink: #ff2d75;
       --purple: #7e6bff;
       --blue: #00d4ff;
+      --gold: #FFD700;
     }
     
     * {
@@ -29,8 +30,8 @@
       position: relative;
     }
     
-    /* Floating Hearts */
-    .hearts {
+    /* Floating Elements */
+    .floating-elements {
       position: fixed;
       top: 0;
       left: 0;
@@ -40,10 +41,22 @@
       z-index: -1;
     }
     
-    .heart {
+    .floating-element {
       position: absolute;
       opacity: 0;
       animation: float 6s ease-in infinite;
+    }
+    
+    .heart {
+      color: var(--pink);
+    }
+    
+    .star {
+      color: var(--gold);
+    }
+    
+    .music-note {
+      color: var(--blue);
     }
     
     @keyframes float {
@@ -61,6 +74,32 @@
         transform: translateY(-100vh) rotate(360deg);
         opacity: 0;
       }
+    }
+    
+    /* Navigation */
+    .nav-dots {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 90;
+    }
+    
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .nav-dot.active {
+      background: var(--pink);
+      transform: scale(1.3);
     }
     
     /* Music Player */
@@ -148,6 +187,64 @@
       }
       50% {
         border-color: var(--pink);
+      }
+    }
+    
+    /* Interactive Love Button */
+    .love-button-container {
+      margin-top: 30px;
+    }
+    
+    .love-button {
+      background: linear-gradient(to right, var(--pink), var(--purple));
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(255, 126, 185, 0.4);
+      font-family: 'Dancing Script', cursive;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .love-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 126, 185, 0.6);
+    }
+    
+    .love-button:active {
+      transform: translateY(1px);
+    }
+    
+    .love-button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+    
+    .love-button:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+    
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
       }
     }
     
@@ -278,6 +375,147 @@
       background: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+    
+    .memory-content:hover {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    /* Countdown Section */
+    .countdown {
+      background: linear-gradient(135deg, rgba(255,126,185,0.2), rgba(126,107,255,0.2));
+      padding: 40px;
+      border-radius: 20px;
+      margin: 50px auto;
+      max-width: 800px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .countdown h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--pink);
+    }
+    
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .countdown-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      min-width: 100px;
+    }
+    
+    .countdown-value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--pink);
+    }
+    
+    .countdown-label {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Love Meter */
+    .love-meter {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      margin: 50px auto;
+      max-width: 800px;
+      text-align: center;
+    }
+    
+    .love-meter h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--pink);
+    }
+    
+    .meter-container {
+      height: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    
+    .meter-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to right, var(--pink), var(--purple));
+      border-radius: 15px;
+      transition: width 1s;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 10px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
+    .love-meter button {
+      background: var(--pink);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .love-meter button:hover {
+      background: var(--dark-pink);
+      transform: scale(1.05);
+    }
+    
+    /* Promise Section */
+    .promise-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      margin: 50px auto;
+      max-width: 800px;
+      text-align: center;
+    }
+    
+    .promise-section h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--pink);
+    }
+    
+    .promise {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 15px 0;
+      text-align: left;
+      transition: all 0.3s;
+    }
+    
+    .promise:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(10px);
+    }
+    
+    .promise i {
+      color: var(--pink);
+      margin-right: 10px;
     }
     
     /* Responsive */
@@ -320,6 +558,20 @@
       .right {
         left: 0;
       }
+      
+      .nav-dots {
+        right: 10px;
+        gap: 10px;
+      }
+      
+      .countdown-box {
+        min-width: 70px;
+        padding: 15px;
+      }
+      
+      .countdown-value {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -335,17 +587,30 @@
     <i class="fas fa-music"></i>
   </div>
   
-  <!-- Floating Hearts -->
-  <div class="hearts" id="hearts-container"></div>
+  <!-- Navigation Dots -->
+  <div class="nav-dots" id="nav-dots">
+    <div class="nav-dot active" data-section="hero"></div>
+    <div class="nav-dot" data-section="letter"></div>
+    <div class="nav-dot" data-section="timeline"></div>
+    <div class="nav-dot" data-section="gallery"></div>
+    <div class="nav-dot" data-section="countdown"></div>
+    <div class="nav-dot" data-section="promises"></div>
+  </div>
+  
+  <!-- Floating Elements -->
+  <div class="floating-elements" id="floating-container"></div>
   
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <h1>Untuk Beby(Ani), Cahaya Hidupku 💖</h1>
     <p class="typing-text">Setiap detik bersamamu adalah halaman terindah dalam buku hidupku...</p>
+    <div class="love-button-container">
+      <button class="love-button" id="love-button">Klik jika kamu mencintaiku ❤️</button>
+    </div>
   </section>
   
   <!-- Love Letter -->
-  <section class="letter">
+  <section class="letter" id="letter">
     <h2>Surat Cinta</h2>
     <p>
       Hai Sayangku,<br /><br />
@@ -364,57 +629,123 @@
   </section>
   
   <!-- Memory Timeline -->
-  <div class="timeline">
+  <div class="timeline" id="timeline">
     <div class="memory left">
       <div class="memory-content">
         <h3>Pertemuan Pertama</h3>
-        <p>lucu yaa kita kenalnya lewat tik-tok....hahah...aku gac nyangka</p>
+        <p>Lucu yaa kita kenalnya lewat tik-tok....hahah...aku gac nyangka</p>
       </div>
     </div>
     <div class="memory right">
       <div class="memory-content">
         <h3>Kencan Pertama</h3>
-        <p>semoga bisaa kencan nih hehehe...</p>
+        <p>Semoga bisaa kencan nih hehehe...</p>
       </div>
     </div>
     <div class="memory left">
       <div class="memory-content">
         <h3>Pertama Kali Pegangan Tangan</h3>
-        <p>dan aku berharap ini jugaaa bisaaaaaa</p>
+        <p>Dan aku berharap ini jugaaa bisaaaaaa</p>
       </div>
     </div>
   </div>
   
   <!-- Photo Gallery -->
- <div class="gallery">
-  <div class="photo">
-    <img src="images/foto1.jpg" alt="Momen pertama kita">
+  <div class="gallery" id="gallery">
+    <div class="photo">
+      <img src="images/foto1.jpg" alt="Momen pertama kita">
+    </div>
+    <div class="photo">
+      <img src="images/foto2.jpg" alt="Liburan bersama">
+    </div>
+    <div class="photo">
+      <img src="images/foto3.jpg" alt="Tanggal spesial">
+    </div>
   </div>
-  <div class="photo">
-    <img src="images/foto2.jpg" alt="Liburan bersama">
+
+  <!-- Countdown Section -->
+  <div class="countdown" id="countdown">
+    <h2>Hitungan Mundur Hari Spesial Kita</h2>
+    <div class="countdown-container">
+      <div class="countdown-box">
+        <div class="countdown-value" id="days">00</div>
+        <div class="countdown-label">Hari</div>
+      </div>
+      <div class="countdown-box">
+        <div class="countdown-value" id="hours">00</div>
+        <div class="countdown-label">Jam</div>
+      </div>
+      <div class="countdown-box">
+        <div class="countdown-value" id="minutes">00</div>
+        <div class="countdown-label">Menit</div>
+      </div>
+      <div class="countdown-box">
+        <div class="countdown-value" id="seconds">00</div>
+        <div class="countdown-label">Detik</div>
+      </div>
+    </div>
   </div>
-  <div class="photo">
-    <img src="images/foto3.jpg" alt="Tanggal spesial">
+
+  <!-- Love Meter -->
+  <div class="love-meter">
+    <h2>Seberapa Besar Cintaku Padamu?</h2>
+    <div class="meter-container">
+      <div class="meter-fill" id="meter-fill">100%</div>
+    </div>
+    <button id="measure-love">Ukur Lagi Cintaku</button>
   </div>
-</div>
+
+  <!-- Promise Section -->
+  <div class="promise-section" id="promises">
+    <h2>Janji-Janjiku Untukmu</h2>
+    <div class="promise">
+      <i class="fas fa-heart"></i>
+      Aku janji akan selalu membuatmu tersenyum setiap hari
+    </div>
+    <div class="promise">
+      <i class="fas fa-heart"></i>
+      Aku janji akan mendengarkan semua ceritamu dengan penuh perhatian
+    </div>
+    <div class="promise">
+      <i class="fas fa-heart"></i>
+      Aku janji akan selalu ada untukmu dalam suka dan duka
+    </div>
+    <div class="promise">
+      <i class="fas fa-heart"></i>
+      Aku janji akan terus berusaha menjadi yang terbaik untuk kita
+    </div>
+    <div class="promise">
+      <i class="fas fa-heart"></i>
+      Aku janji cintaku padamu akan terus tumbuh setiap hari
+    </div>
   </div>
 
   <script>
-    // Floating Hearts Animation
-    function createHearts() {
-      const container = document.getElementById('hearts-container');
-      const colors = ['#ff7eb9', '#ff65a3', '#7afcff', '#feff9c', '#fff740'];
+    // Floating Elements Animation
+    function createFloatingElements() {
+      const container = document.getElementById('floating-container');
+      const elements = ['❤️', '⭐', '🎵'];
+      const colors = ['#ff7eb9', '#ff65a3', '#7afcff', '#feff9c', '#fff740', '#FFD700'];
       
-      for (let i = 0; i < 15; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.innerHTML = '❤️';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = 6 + Math.random() * 10 + 's';
-        heart.style.animationDelay = Math.random() * 5 + 's';
-        heart.style.fontSize = (10 + Math.random() * 20) + 'px';
-        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-        container.appendChild(heart);
+      for (let i = 0; i < 20; i++) {
+        const element = document.createElement('div');
+        element.classList.add('floating-element');
+        
+        // Randomly choose between heart, star, or music note
+        const randomType = Math.floor(Math.random() * elements.length);
+        element.innerHTML = elements[randomType];
+        
+        // Add specific class based on type
+        if (randomType === 0) element.classList.add('heart');
+        else if (randomType === 1) element.classList.add('star');
+        else element.classList.add('music-note');
+        
+        element.style.left = Math.random() * 100 + 'vw';
+        element.style.animationDuration = 6 + Math.random() * 10 + 's';
+        element.style.animationDelay = Math.random() * 5 + 's';
+        element.style.fontSize = (10 + Math.random() * 20) + 'px';
+        element.style.color = colors[Math.floor(Math.random() * colors.length)];
+        container.appendChild(element);
       }
     }
     
@@ -473,49 +804,217 @@
       });
     }
     
-    // Initialize
-    window.onload = function() {
-      createHearts();
-      startTypingAnimation();
+    // Love Button Effect
+    const loveButton = document.getElementById('love-button');
+    let clickCount = 0;
+    const loveMessages = [
+      "Aku tahu kamu mencintaiku! ❤️",
+      "Cintaku padamu semakin besar! 💖",
+      "Kamu membuat hatiku berbunga-bunga! 🌸",
+      "Aku tidak bisa berhenti memikirkanmu! 💭",
+      "Kamu adalah segalanya bagiku! 🌟"
+    ];
+    
+    loveButton.addEventListener('click', function() {
+      clickCount++;
       
-      // Add confetti effect on click
-      document.addEventListener('click', function(e) {
-        const colors = ['#ff7eb9', '#7afcff', '#fff740'];
-        const confetti = document.createElement('div');
-        confetti.style.position = 'fixed';
-        confetti.style.left = e.clientX + 'px';
-        confetti.style.top = e.clientY + 'px';
-        confetti.style.width = '10px';
-        confetti.style.height = '10px';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.borderRadius = '50%';
-        confetti.style.pointerEvents = 'none';
-        confetti.style.transform = 'translate(-50%, -50%)';
-        confetti.style.animation = 'confetti-fall 2s linear forwards';
+      // Change button text
+      if (clickCount <= loveMessages.length) {
+        loveButton.textContent = loveMessages[clickCount - 1];
+      } else {
+        loveButton.textContent = `Aku mencintaimu ${clickCount}x lebih banyak! 💕`;
+      }
+      
+      // Create heart explosion
+      createHeartExplosion(this);
+      
+      // Increase button size slightly
+      this.style.transform = `scale(${1 + clickCount*0.05})`;
+    });
+    
+    function createHeartExplosion(element) {
+      const rect = element.getBoundingClientRect();
+      const x = rect.left + rect.width/2;
+      const y = rect.top + rect.height/2;
+      
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤️';
+        heart.style.position = 'fixed';
+        heart.style.left = x + 'px';
+        heart.style.top = y + 'px';
+        heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+        heart.style.transform = 'translate(-50%, -50%)';
+        heart.style.opacity = '0';
+        heart.style.animation = `heart-explode ${1 + Math.random()}s ease-out forwards`;
+        heart.style.color = `hsl(${Math.random() * 60 + 330}, 100%, 70%)`;
         
-        document.body.appendChild(confetti);
-        
-        // Create keyframes for animation
-        const style = document.createElement('style');
-        style.innerHTML = `
-          @keyframes confetti-fall {
-            0% {
-              transform: translate(-50%, -50%) rotate(0deg);
-              opacity: 1;
-            }
-            100% {
-              transform: translate(-50%, 100vh) rotate(360deg);
-              opacity: 0;
-            }
-          }
-        `;
-        document.head.appendChild(style);
+        document.body.appendChild(heart);
         
         // Remove after animation
         setTimeout(() => {
-          confetti.remove();
-          style.remove();
-        }, 2000);
+          heart.remove();
+        }, 1000);
+      }
+      
+      // Create keyframes for animation
+      const style = document.createElement('style');
+      style.innerHTML = `
+        @keyframes heart-explode {
+          0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            transform: translate(${(Math.random() - 0.5) * 200}px, ${-50 + Math.random() * -100}px) scale(1);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      // Remove after animation
+      setTimeout(() => {
+        style.remove();
+      }, 1000);
+    }
+    
+    // Countdown Timer
+    function updateCountdown() {
+      // Set your special date here (YYYY, MM-1, DD)
+      const specialDate = new Date(2024, 11, 31); // December 31, 2024
+      const now = new Date();
+      
+      const diff = specialDate - now;
+      
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        return;
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Initial call
+    
+    // Love Meter
+    const loveMeter = document.getElementById('meter-fill');
+    const measureButton = document.getElementById('measure-love');
+    
+    measureButton.addEventListener('click', function() {
+      // Animate the meter with random values for fun
+      let currentPercent = 100;
+      loveMeter.style.width = '100%';
+      loveMeter.textContent = '100%';
+      
+      // Random fluctuation animation
+      let interval = setInterval(() => {
+        currentPercent = Math.min(100, Math.max(90, currentPercent + (Math.random() - 0.5) * 10));
+        loveMeter.style.width = currentPercent + '%';
+        loveMeter.textContent = Math.round(currentPercent) + '%';
+      }, 100);
+      
+      // Stop after 2 seconds
+      setTimeout(() => {
+        clearInterval(interval);
+        loveMeter.style.width = '100%';
+        loveMeter.textContent = '100%';
+      }, 2000);
+    });
+    
+    // Navigation Dots
+    const sections = document.querySelectorAll('section, .timeline, .gallery, .countdown, .promise-section');
+    const dots = document.querySelectorAll('.nav-dot');
+    
+    function updateActiveDot() {
+      const scrollPosition = window.scrollY + 100;
+      
+      sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          dots.forEach(dot => dot.classList.remove('active'));
+          dots[index].classList.add('active');
+        }
+      });
+    }
+    
+    // Scroll to section when dot is clicked
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        window.scrollTo({
+          top: sections[index].offsetTop,
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Initialize
+    window.onload = function() {
+      createFloatingElements();
+      startTypingAnimation();
+      
+      // Add scroll event listener for navigation dots
+      window.addEventListener('scroll', updateActiveDot);
+      updateActiveDot(); // Initial call
+      
+      // Add confetti effect on click
+      document.addEventListener('click', function(e) {
+        if (e.target.id !== 'love-button' && e.target.id !== 'measure-love') {
+          const colors = ['#ff7eb9', '#7afcff', '#fff740', '#FFD700'];
+          const confetti = document.createElement('div');
+          confetti.style.position = 'fixed';
+          confetti.style.left = e.clientX + 'px';
+          confetti.style.top = e.clientY + 'px';
+          confetti.style.width = '10px';
+          confetti.style.height = '10px';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.borderRadius = '50%';
+          confetti.style.pointerEvents = 'none';
+          confetti.style.transform = 'translate(-50%, -50%)';
+          confetti.style.animation = 'confetti-fall 2s linear forwards';
+          
+          document.body.appendChild(confetti);
+          
+          // Create keyframes for animation
+          const style = document.createElement('style');
+          style.innerHTML = `
+            @keyframes confetti-fall {
+              0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+                opacity: 1;
+              }
+              100% {
+                transform: translate(${(Math.random() - 0.5) * 200}px, 100vh) rotate(360deg);
+                opacity: 0;
+              }
+            }
+          `;
+          document.head.appendChild(style);
+          
+          // Remove after animation
+          setTimeout(() => {
+            confetti.remove();
+            style.remove();
+          }, 2000);
+        }
       });
     };
   </script>
